@@ -1,0 +1,10 @@
+﻿SOLUTION STRUCTURE: -------------------------------------------------------------------------------------------
+
+- WebMedCalculator.Web             // Blazor Server, Identity UI
+- WebMedCalculator.Application  // UseCases, DTO, Interfaces
+- WebMedCalculator.Domain        // Formules, value objects
+- WebMedCalculator.Data             // EF Core, Identity implementation
+
+TODO LIST: -----------------------------------------------------------------------------------------------------
+
+1)
