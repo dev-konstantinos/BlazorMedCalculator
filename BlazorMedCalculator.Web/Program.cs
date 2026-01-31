@@ -16,7 +16,7 @@ namespace BlazorMedCalculator.Web
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
@@ -35,8 +35,6 @@ namespace BlazorMedCalculator.Web
 
             builder.Services.AddScoped<IPdfExportService, QuestPdfExportService>(); // register PDF export service
 
-
-
             builder.Services.AddAuthentication(options =>
                 {
                     options.DefaultScheme = IdentityConstants.ApplicationScheme;
@@ -54,13 +52,16 @@ namespace BlazorMedCalculator.Web
                     options.SignIn.RequireConfirmedAccount = true;
                     options.Stores.SchemaVersion = IdentitySchemaVersions.Version3;
                 })
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddSignInManager()
                 .AddDefaultTokenProviders();
 
-            builder.Services.AddSingleton<IEmailSender<ApplicationUser>, IdentityNoOpEmailSender>();
+            builder.Services.AddSingleton<IEmailSender<ApplicationUser>, IdentityNoOpEmailSender>(); // no-op email sender
 
             var app = builder.Build();
+
+            await IdentitySeeder.SeedAsync(app.Services); // seed roles and admin user
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
@@ -70,7 +71,6 @@ namespace BlazorMedCalculator.Web
             else
             {
                 app.UseExceptionHandler("/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
 
