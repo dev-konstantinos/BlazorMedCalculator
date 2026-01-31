@@ -19,4 +19,9 @@
     <ProjectReference Include="..\BlazorMedCalculator.Application\BlazorMedCalculator.Application.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Content\Calculators\" />
+    <Folder Include="Content\Pages\" />
+  </ItemGroup>
+
 </Project>

@@ -1,4 +1,4 @@
-using BlazorMedCalculator.Application.Common.Interfaces;
+using BlazorMedCalculator.Application.Interfaces;
 using BlazorMedCalculator.Web.Components;
 using BlazorMedCalculator.Web.Components.Account;
 using BlazorMedCalculator.Web.Data;

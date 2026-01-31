@@ -3,7 +3,6 @@
     <File Path="TODO.txt" />
   </Folder>
   <Project Path="BlazorMedCalculator.Application/BlazorMedCalculator.Application.csproj" />
-  <Project Path="BlazorMedCalculator.Data/BlazorMedCalculator.Data.csproj" />
   <Project Path="BlazorMedCalculator.Domain/BlazorMedCalculator.Domain.csproj" />
   <Project Path="BlazorMedCalculator.Web/BlazorMedCalculator.Web.csproj" />
 </Solution>

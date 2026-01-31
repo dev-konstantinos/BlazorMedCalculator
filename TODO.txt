@@ -1,9 +1,52 @@
 ﻿SOLUTION STRUCTURE: -------------------------------------------------------------------------------------------
 
-- WebMedCalculator.Web             // Blazor Server, Identity UI
-- WebMedCalculator.Application  // UseCases, DTO, Interfaces
-- WebMedCalculator.Domain        // Formules, value objects
-- WebMedCalculator.Data             // EF Core, Identity implementation
+BlazorMedCalculator.sln
+│
+├─ BlazorMedCalculator.Domain
+│   └─ Calculators
+│       └─ BmiCalculator.cs
+│
+├─ BlazorMedCalculator.Application
+│   ├─ Interfaces
+│   │   ├─ IContentService.cs
+│   │   ├─ ICurrentUser.cs
+│   │   ├─ IEmailService.cs
+│   │   └─ IPdfExportService.cs
+│   │
+│   └─ Models
+│       └─ CalculationResult.cs
+│
+└─ BlazorMedCalculator.Web
+    │
+    ├─ Content
+    │   ├─ Calculators
+    │   │   └─ bmi.md
+    │   └─ Pages
+    │       ├─ about.md
+    │       └─ contacts.md
+    │
+    ├─ Components
+    │   ├─ Admin
+    │   │   └─ ContentEditor.razor
+    │   ├─ Calculators
+    │   │   └─ BmiCalculator.razor
+    │   ├─ Content
+    │   │   └─ MarkdownView.razor
+    │   ├─ Layout
+    │   └─ Pages
+    │
+    ├─ Infrastructure
+    │   ├─ Content
+    │   │   └─ FileContentService.cs
+    │   ├─ Email
+    │   │   └─ SmtpEmailService.cs
+    │   ├─ Identity
+    │   │   └─ CurrentUser.cs
+    │   └─ Pdf
+    │       └─ QuestPdfExportService.cs
+    │
+    ├─ Program.cs
+    └─ appsettings.json
 
 TODO LIST: -----------------------------------------------------------------------------------------------------
 

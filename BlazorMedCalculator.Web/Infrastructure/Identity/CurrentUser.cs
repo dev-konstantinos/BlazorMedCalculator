@@ -1,5 +1,5 @@
 ﻿using System.Security.Claims;
-using BlazorMedCalculator.Application.Common.Interfaces;
+using BlazorMedCalculator.Application.Interfaces;
 using Microsoft.AspNetCore.Components.Authorization;
 
 namespace BlazorMedCalculator.Web.Infrastructure.Identity;
@@ -29,6 +29,7 @@ public sealed class CurrentUser : ICurrentUser
     public bool IsInRole(string role) =>
         GetUser()?.IsInRole(role) ?? false;
 
+    // helper method to get the current ClaimsPrincipal synchronously
     private ClaimsPrincipal? GetUser()
     {
         var authState = _authStateProvider
