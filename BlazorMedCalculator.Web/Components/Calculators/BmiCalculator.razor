@@ -6,6 +6,8 @@
 @using System.ComponentModel.DataAnnotations;
 
 @inject BlazorMedCalculator.Application.Interfaces.IContentService ContentService
+@inject BlazorMedCalculator.Application.Interfaces.IPdfExportService PdfService
+@inject NavigationManager Navigation
 
 <h1>BMI Calculator</h1>
 
@@ -34,15 +36,32 @@
     <hr />
     <h3>Result</h3>
 
-    <p>
-        <strong>BMI:</strong>
-        @_result.Outputs["bmi"]
-    </p>
+    <p><strong>BMI:</strong> @_result.Outputs["bmi"]</p>
+    <p><strong>Classification:</strong> @_result.Outputs["category"]</p>
 
-    <p>
-        <strong>Classification:</strong>
-        @_result.Outputs["category"]
-    </p>
+    <form method="post"
+          action="/api/pdf/bmi">
+
+        <input type="hidden"
+               name="CalculatorCode"
+               value="@_result.CalculatorCode" />
+
+        @foreach (var i in _result.Inputs)
+        {
+            <input type="hidden"
+                   name="Inputs[@i.Key]"
+                   value="@i.Value" />
+        }
+
+        @foreach (var o in _result.Outputs)
+        {
+            <input type="hidden"
+                   name="Outputs[@o.Key]"
+                   value="@o.Value" />
+        }
+
+        <button type="submit">Download PDF</button>
+    </form>
 }
 
 @code {

@@ -2,11 +2,15 @@ using BlazorMedCalculator.Application.Interfaces;
 using BlazorMedCalculator.Web.Components;
 using BlazorMedCalculator.Web.Components.Account;
 using BlazorMedCalculator.Web.Data;
+using BlazorMedCalculator.Web.Endpoints;
 using BlazorMedCalculator.Web.Infrastructure.Content;
 using BlazorMedCalculator.Web.Infrastructure.Identity;
+using BlazorMedCalculator.Web.Infrastructure.Pdf;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+
 
 namespace BlazorMedCalculator.Web
 {
@@ -28,6 +32,8 @@ namespace BlazorMedCalculator.Web
             builder.Services.AddScoped<ICurrentUser, CurrentUser>(); // register CurrentUser to access user info in business logic
 
             builder.Services.AddScoped<IContentService, FileContentService>(); // register FileContentService to read markdown
+
+            builder.Services.AddScoped<IPdfExportService, QuestPdfExportService>(); // register PDF export service
 
 
 
@@ -79,6 +85,8 @@ namespace BlazorMedCalculator.Web
 
             // Add additional endpoints required by the Identity /Account Razor components.
             app.MapAdditionalIdentityEndpoints();
+
+            app.MapPdfEndpoints();
 
             app.Run();
         }
