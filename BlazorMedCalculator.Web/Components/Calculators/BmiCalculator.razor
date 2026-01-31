@@ -3,6 +3,7 @@
 @using BlazorMedCalculator.Domain.Calculators
 @using BlazorMedCalculator.Application.Models
 @using BlazorMedCalculator.Web.Components.Content
+@using System.ComponentModel.DataAnnotations;
 
 @inject BlazorMedCalculator.Application.Interfaces.IContentService ContentService
 
@@ -81,7 +82,9 @@
 
     private sealed class BmiInput
     {
+        [Range(1, 500, ErrorMessage = "Weight must be positive")]
         public double WeightKg { get; set; }
+        [Range(30, 300, ErrorMessage = "Height must be positive")]
         public double HeightCm { get; set; }
     }
 }
