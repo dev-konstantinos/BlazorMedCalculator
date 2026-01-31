@@ -1,4 +1,6 @@
-﻿SOLUTION STRUCTURE: -------------------------------------------------------------------------------------------
+﻿This project is a Blazor-based medical calculator application designed to provide users with various health-related calculations and content management features. The solution is organized into three main projects: Domain, Application, and Web. Main functions include calculation, content management through markdown files, user authentication, email notifications, and PDF export of calculation results.
+
+SOLUTION STRUCTURE: -------------------------------------------------------------------------------------------
 
 BlazorMedCalculator.sln
 │
@@ -50,4 +52,4 @@ BlazorMedCalculator.sln
 
 TODO LIST: -----------------------------------------------------------------------------------------------------
 
-1)
+1) Exceptions in Calculators should not stop the whole calculation process!

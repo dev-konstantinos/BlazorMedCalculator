@@ -2,6 +2,7 @@ using BlazorMedCalculator.Application.Interfaces;
 using BlazorMedCalculator.Web.Components;
 using BlazorMedCalculator.Web.Components.Account;
 using BlazorMedCalculator.Web.Data;
+using BlazorMedCalculator.Web.Infrastructure.Content;
 using BlazorMedCalculator.Web.Infrastructure.Identity;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -25,6 +26,8 @@ namespace BlazorMedCalculator.Web
 
             builder.Services.AddAuthorizationCore(); // used for [Authorize] in Razor components
             builder.Services.AddScoped<ICurrentUser, CurrentUser>(); // register CurrentUser to access user info in business logic
+
+            builder.Services.AddScoped<IContentService, FileContentService>(); // register FileContentService to read markdown
 
 
 

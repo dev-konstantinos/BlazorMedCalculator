@@ -1,5 +1,87 @@
-﻿<h3>BmiCalculator</h3>
+﻿@page "/calculators/bmi"
+
+@using BlazorMedCalculator.Domain.Calculators
+@using BlazorMedCalculator.Application.Models
+@using BlazorMedCalculator.Web.Components.Content
+
+@inject BlazorMedCalculator.Application.Interfaces.IContentService ContentService
+
+<h1>BMI Calculator</h1>
+
+<MarkdownView Markdown="@_article" />
+
+<hr />
+
+<EditForm Model="_input" OnValidSubmit="Calculate">
+    <DataAnnotationsValidator />
+
+    <div>
+        <label>Weight (kg)</label><br />
+        <InputNumber @bind-Value="_input.WeightKg" />
+    </div>
+
+    <div>
+        <label>Height (cm)</label><br />
+        <InputNumber @bind-Value="_input.HeightCm" />
+    </div>
+
+    <button type="submit">Calculate</button>
+</EditForm>
+
+@if (_result is not null)
+{
+    <hr />
+    <h3>Result</h3>
+
+    <p>
+        <strong>BMI:</strong>
+        @_result.Outputs["bmi"]
+    </p>
+
+    <p>
+        <strong>Classification:</strong>
+        @_result.Outputs["category"]
+    </p>
+}
 
 @code {
+    private string _article = string.Empty;
 
+    private BmiInput _input = new();
+    private CalculationResult? _result;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _article = await ContentService.GetCalculatorArticleAsync("bmi");
+    }
+
+    private void Calculate()
+    {
+        var bmi = BlazorMedCalculator.Domain.Calculators.BmiCalculator.Calculate(
+            _input.WeightKg,
+            _input.HeightCm);
+
+        var category = BlazorMedCalculator.Domain.Calculators.BmiClassifier.Classify(bmi);
+
+        _result = new CalculationResult
+        {
+            CalculatorCode = "bmi",
+            Inputs = new Dictionary<string, string>
+            {
+                ["weightKg"] = _input.WeightKg.ToString(),
+                ["heightCm"] = _input.HeightCm.ToString()
+            },
+            Outputs = new Dictionary<string, string>
+            {
+                ["bmi"] = bmi.ToString("0.00"),
+                ["category"] = category
+            }
+        };
+    }
+
+    private sealed class BmiInput
+    {
+        public double WeightKg { get; set; }
+        public double HeightCm { get; set; }
+    }
 }

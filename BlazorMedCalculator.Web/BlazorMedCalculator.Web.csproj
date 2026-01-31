@@ -9,6 +9,25 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Content\Calculators\bmi.md" />
+    <None Remove="Content\Pages\about.md" />
+    <None Remove="Content\Pages\contacts.md" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Content\Calculators\bmi.md">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pages\about.md">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pages\contacts.md">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Markdig" Version="0.44.0" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="10.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="10.0.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.2" />
@@ -17,11 +36,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BlazorMedCalculator.Application\BlazorMedCalculator.Application.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Content\Calculators\" />
-    <Folder Include="Content\Pages\" />
+    <ProjectReference Include="..\BlazorMedCalculator.Domain\BlazorMedCalculator.Domain.csproj" />
   </ItemGroup>
 
 </Project>

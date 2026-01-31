@@ -1,5 +1,29 @@
-﻿<h3>MarkdownView</h3>
+﻿@using Markdig
+@using Microsoft.AspNetCore.Components
+
+@if (!string.IsNullOrWhiteSpace(Markdown))
+{
+    @((MarkupString)_html)
+}
 
 @code {
+    [Parameter]
+    public string? Markdown { get; set; }
 
+    private string _html = string.Empty;
+
+    protected override void OnParametersSet()
+    {
+        if (string.IsNullOrWhiteSpace(Markdown))
+        {
+            _html = string.Empty;
+            return;
+        }
+
+        var pipeline = new MarkdownPipelineBuilder()
+            .UseAdvancedExtensions()
+            .Build();
+
+        _html = Markdig.Markdown.ToHtml(Markdown, pipeline);
+    }
 }
