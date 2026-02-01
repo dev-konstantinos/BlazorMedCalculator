@@ -30,7 +30,7 @@ public static class IdentitySeeder
         }
 
         // 2. Admin user
-        const string adminEmail = "admin@localhost.com";
+        const string adminEmail = "admin@localhost.com"; // only for demo/testing in development
         const string adminPassword = "Admin123!"; // only for demo/testing in development
 
         var admin = await userManager.FindByEmailAsync(adminEmail);

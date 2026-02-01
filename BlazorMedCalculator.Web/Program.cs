@@ -4,9 +4,11 @@ using BlazorMedCalculator.Web.Components.Account;
 using BlazorMedCalculator.Web.Data;
 using BlazorMedCalculator.Web.Endpoints;
 using BlazorMedCalculator.Web.Infrastructure.Content;
+using BlazorMedCalculator.Web.Infrastructure.Email;
+using BlazorMedCalculator.Web.Infrastructure.Email.Development;
 using BlazorMedCalculator.Web.Infrastructure.Identity;
+using BlazorMedCalculator.Web.Infrastructure.Identity.Development;
 using BlazorMedCalculator.Web.Infrastructure.Pdf;
-using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -35,6 +37,10 @@ namespace BlazorMedCalculator.Web
 
             builder.Services.AddScoped<IPdfExportService, QuestPdfExportService>(); // register PDF export service
 
+            builder.Services.AddScoped<IUserContactInfo, UserContactInfo>();
+
+            builder.Services.AddScoped<PdfEmailService>();
+
             builder.Services.AddAuthentication(options =>
                 {
                     options.DefaultScheme = IdentityConstants.ApplicationScheme;
@@ -57,11 +63,29 @@ namespace BlazorMedCalculator.Web
                 .AddSignInManager()
                 .AddDefaultTokenProviders();
 
-            builder.Services.AddSingleton<IEmailSender<ApplicationUser>, IdentityNoOpEmailSender>(); // no-op email sender
+            builder.Services.Configure<SmtpOptions>(
+                builder.Configuration.GetSection("Smtp")); // bind SmtpOptions from configuration
+
+            var emailEnabled =
+                builder.Configuration.GetValue<bool>("Email:Enabled"); // read email enabled setting from configuration
+
+            if (emailEnabled)
+            {
+                builder.Services.AddScoped<IEmailService, SmtpEmailService>(); // register SmtpEmailService for sending real emails
+                builder.Services.AddScoped<IEmailSender<ApplicationUser>, IdentityEmailSender>(); // real IdentityEmailSender
+            }
+            else
+            {
+                builder.Services.AddScoped<IEmailService, FakeEmailService>(); // register FakeEmailService for development/testing
+                builder.Services.AddScoped<IEmailSender<ApplicationUser>, DevIdentityEmailSender>(); // fake IdentityEmailSender
+            }
 
             var app = builder.Build();
 
             await IdentitySeeder.SeedAsync(app.Services); // seed roles and admin user
+
+            // this Confirmator can be used to set all user accounts as "confirmed" at the start of the application
+            // await DevelopmentEmailConfirmation.AutoConfirmEmailsAsync(app.Services, app.Environment);
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())

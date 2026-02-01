@@ -1,3 +1,48 @@
 ﻿This project is a Blazor-based medical calculator app designed to provide users with various health-related calculations. The solution is organized into three main projects: Domain, Application, and Web (UI). Basic functions include calculation, content management through markdown files, user authentication, email notifications, and PDF export of calculation results.
 
-TODO LIST: -----------------------------------------------------------------------------------------------------
+TODO LIST   --------------------------------------------------------------------------------------------------
+
+1) Only registered user can download PDF reports!!!
+
+
+
+
+README   ----------------------------------------------------------------------------------------------------
+
+Email Infrastructure (DEV / PROD Switch)
+
+This project implements a production-ready email infrastructure with a safe development mode.
+Real email sending can be disabled locally while preserving the full ASP.NET Identity email confirmation flow.
+
+SmtpEmailService:
+
+- Sends real emails via SMTP
+- Used in Production
+
+FakeEmailService:
+
+- Does not send emails
+- Logs email content to application logs
+- Used only in Development mode
+
+Environment Switch (DEV vs PROD): Email behavior is controlled by a single configuration flag.
+
+Production (appsettings.json):
+
+"Email": {
+  "Enabled": true
+}
+
+- Real SMTP functionality is enabled
+- Confirmation and notification emails are sent normally
+
+Development (appsettings.Development.json):
+
+"Email": {
+  "Enabled": false
+}
+
+- Real SMTP is disabled
+- Emails are logged instead of sent
+- No external dependencies required
+
