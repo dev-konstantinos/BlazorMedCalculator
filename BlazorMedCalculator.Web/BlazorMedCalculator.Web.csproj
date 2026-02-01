@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
@@ -33,11 +33,6 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="10.0.2" />
     <PackageReference Include="QuestPDF" Version="2025.12.3" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\BlazorMedCalculator.Application\BlazorMedCalculator.Application.csproj" />
-    <ProjectReference Include="..\BlazorMedCalculator.Domain\BlazorMedCalculator.Domain.csproj" />
   </ItemGroup>
 
 </Project>

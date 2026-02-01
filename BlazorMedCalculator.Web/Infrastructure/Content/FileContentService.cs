@@ -1,7 +1,6 @@
-﻿using System.Security;
+﻿using BlazorMedCalculator.Application.Interfaces;
+using System.Security;
 using System.Text.RegularExpressions;
-using BlazorMedCalculator.Application.Interfaces;
-using Microsoft.Extensions.Hosting;
 
 namespace BlazorMedCalculator.Web.Infrastructure.Content;
 

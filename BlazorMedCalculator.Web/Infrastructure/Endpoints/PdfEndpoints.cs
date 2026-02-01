@@ -2,7 +2,7 @@
 using BlazorMedCalculator.Application.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BlazorMedCalculator.Web.Endpoints;
+namespace BlazorMedCalculator.Web.Infrastructure.Endpoints;
 
 public static class PdfEndpoints
 {

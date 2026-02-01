@@ -1,9 +1,27 @@
 ﻿This project is a Blazor-based medical calculator app designed to provide users with various health-related calculations. The solution is organized into three main projects: Domain, Application, and Web (UI). Basic functions include calculation, content management through markdown files, user authentication, email notifications, and PDF export of calculation results.
 
+BlazorMedCalculator.Web
+│
+├─ Components          ← UI (Razor)
+├─ Content                  ← markdown-content to edit
+├─ Data                       ← EF Core + Identity models
+├─ Endpoints              ← HTTP endpoints (PDF)
+├─ Infrastructure
+│   ├─ Calculators      ← business logic to calculate medical parameters
+│   ├─ Content           ← FileContentService
+│   ├─ Email               ← SMTP / Fake / PDF email
+│   ├─ Identity            ← CurrentUser, UserContactInfo, seed, dev helpers
+│   ├─ Pdf                   ← QuestPdfExportService
+│   ├─ Interfaces         ← all interfaces together
+│   └─ Models             ← CalculationResult
+├─ appsettings.json
+└─ Program.cs
+
 TODO LIST   --------------------------------------------------------------------------------------------------
 
 1) Only registered user can download PDF reports!!!
 
+2) Remove sync-over-async from UserContactInfo???
 
 
 
