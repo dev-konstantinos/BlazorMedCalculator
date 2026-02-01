@@ -40,7 +40,7 @@
     <p><strong>Classification:</strong> @_result.Outputs["category"]</p>
 
     <!-- ===== Download PDF (pure HTML POST) ===== -->
-    <form method="post" action="/api/pdf/bmi">
+    <form method="post" action="/api/pdf/@_result.CalculatorCode">
         <input type="hidden" name="CalculatorCode" value="@_result.CalculatorCode" />
 
         @foreach (var i in _result.Inputs)

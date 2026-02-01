@@ -7,13 +7,13 @@ BlazorMedCalculator.Web
 ├─ Data                       ← EF Core + Identity models
 ├─ Endpoints              ← HTTP endpoints (PDF)
 ├─ Infrastructure
-│   ├─ Calculators      ← business logic to calculate medical parameters
+│   ├─ Calculators      ← main business logic
 │   ├─ Content           ← FileContentService
 │   ├─ Email               ← SMTP / Fake / PDF email
-│   ├─ Identity            ← CurrentUser, UserContactInfo, seed, dev helpers
+│   ├─ Identity            ← User seed, dev helpers etc.
 │   ├─ Pdf                   ← QuestPdfExportService
 │   ├─ Interfaces         ← all interfaces together
-│   └─ Models             ← CalculationResult
+│   └─ Models             ← CalculationResult model
 ├─ appsettings.json
 └─ Program.cs
 
