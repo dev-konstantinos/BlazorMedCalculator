@@ -19,7 +19,7 @@ BlazorMedCalculator.Web
 
 TODO LIST   --------------------------------------------------------------------------------------------------
 
-1) Only registered user can download PDF reports!!!
+1) Only registered user can download PDF reports!!! Backend send / download protection to remove, UI protection to add!
 
 2) Remove sync-over-async from UserContactInfo???
 
