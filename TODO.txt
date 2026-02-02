@@ -19,9 +19,8 @@ BlazorMedCalculator.Web
 
 TODO LIST   --------------------------------------------------------------------------------------------------
 
-1) Only registered user can download PDF reports!!! Backend send / download protection to remove, UI protection to add!
+1) Refactor pages to simplify new pages creation!
 
-2) Remove sync-over-async from UserContactInfo???
 
 
 
@@ -31,36 +30,21 @@ Email Infrastructure (DEV / PROD Switch)
 
 This project implements a production-ready email infrastructure with a safe development mode.
 Real email sending can be disabled locally while preserving the full ASP.NET Identity email confirmation flow.
+Environment Switch (DEV vs PROD): Email behavior is controlled by a single configuration flag.
+
+1) Production (appsettings.json): "Email": { "Enabled": true }
 
 SmtpEmailService:
 
-- Sends real emails via SMTP
+- Sends real emails with SMTP server
+- SMTP options can be easily adjusted
 - Used in Production
+
+2) Development (appsettings.Development.json): "Email": { "Enabled": false }
 
 FakeEmailService:
 
 - Does not send emails
 - Logs email content to application logs
 - Used only in Development mode
-
-Environment Switch (DEV vs PROD): Email behavior is controlled by a single configuration flag.
-
-Production (appsettings.json):
-
-"Email": {
-  "Enabled": true
-}
-
-- Real SMTP functionality is enabled
-- Confirmation and notification emails are sent normally
-
-Development (appsettings.Development.json):
-
-"Email": {
-  "Enabled": false
-}
-
-- Real SMTP is disabled
-- Emails are logged instead of sent
-- No external dependencies required
 

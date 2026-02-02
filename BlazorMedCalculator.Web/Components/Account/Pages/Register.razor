@@ -3,6 +3,7 @@
 @using System.ComponentModel.DataAnnotations
 @using System.Text
 @using System.Text.Encodings.Web
+@using BlazorMedCalculator.Web.Infrastructure.Identity
 @using Microsoft.AspNetCore.Identity
 @using Microsoft.AspNetCore.WebUtilities
 @using BlazorMedCalculator.Web.Data
@@ -84,6 +85,9 @@
             identityErrors = result.Errors;
             return;
         }
+
+        // adding role "User" automatically to all new app users
+        await UserManager.AddToRoleAsync(user, Roles.User);
 
         Logger.LogInformation("User created a new account with password.");
 

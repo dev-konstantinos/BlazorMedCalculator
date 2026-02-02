@@ -4,6 +4,7 @@
 @using BlazorMedCalculator.Application.Models
 @using BlazorMedCalculator.Web.Components.Content
 @using System.ComponentModel.DataAnnotations
+@using Microsoft.AspNetCore.Components.Authorization
 
 @inject BlazorMedCalculator.Application.Interfaces.IContentService ContentService
 @inject PdfEmailService PdfEmailService
@@ -39,29 +40,40 @@
     <p><strong>BMI:</strong> @_result.Outputs["bmi"]</p>
     <p><strong>Classification:</strong> @_result.Outputs["category"]</p>
 
-    <!-- ===== Download PDF (pure HTML POST) ===== -->
-    <form method="post" action="/api/pdf/@_result.CalculatorCode">
-        <input type="hidden" name="CalculatorCode" value="@_result.CalculatorCode" />
+    <AuthorizeView Roles="User,Admin">
+        <Authorized>
+            <!-- ===== Download PDF ===== -->
+            <form method="post" action="/api/pdf/@_result.CalculatorCode">
+                <input type="hidden" name="CalculatorCode" value="@_result.CalculatorCode" />
 
-        @foreach (var i in _result.Inputs)
-        {
-            <input type="hidden" name="Inputs[@i.Key]" value="@i.Value" />
-        }
+                @foreach (var i in _result.Inputs)
+                {
+                    <input type="hidden" name="Inputs[@i.Key]" value="@i.Value" />
+                }
 
-        @foreach (var o in _result.Outputs)
-        {
-            <input type="hidden" name="Outputs[@o.Key]" value="@o.Value" />
-        }
+                @foreach (var o in _result.Outputs)
+                {
+                    <input type="hidden" name="Outputs[@o.Key]" value="@o.Value" />
+                }
 
-        <button type="submit">Download PDF</button>
-    </form>
+                <button type="submit">Download PDF</button>
+            </form>
+            <!-- ===== Send PDF Report ===== -->
+            <div style="margin-top:10px">
+                <button type="button" @onclick="SendPdfByEmail">
+                    Send PDF by Email
+                </button>
+            </div>
+        </Authorized>
 
-    <!-- ===== Send PDF by Email (Blazor event) ===== -->
-    <div style="margin-top:10px">
-        <button type="button" @onclick="SendPdfByEmail">
-            Send PDF by Email
-        </button>
-    </div>
+        <NotAuthorized>
+            <p>
+                <em>
+                    Please sign in to download or email your PDF result.
+                </em>
+            </p>
+        </NotAuthorized>
+    </AuthorizeView>
 }
 
 @code {
