@@ -1,0 +1,59 @@
+﻿@using Microsoft.AspNetCore.Components.Authorization
+@using BlazorMedCalculator.Application.Models
+
+@if (Result is null)
+{
+    return;
+}
+
+<hr />
+<h3>Result</h3>
+
+@ResultContent
+
+<AuthorizeView Roles="User,Admin">
+    <Authorized>
+        <!-- ===== Download PDF ===== -->
+        <form method="post" action="/api/pdf/@Result.CalculatorCode">
+            <input type="hidden" name="CalculatorCode" value="@Result.CalculatorCode" />
+
+            @foreach (var i in Result.Inputs)
+            {
+                <input type="hidden" name="Inputs[@i.Key]" value="@i.Value" />
+            }
+
+            @foreach (var o in Result.Outputs)
+            {
+                <input type="hidden" name="Outputs[@o.Key]" value="@o.Value" />
+            }
+
+            <button type="submit">Download PDF</button>
+        </form>
+
+        <!-- ===== Send PDF by Email ===== -->
+        <div style="margin-top:10px">
+            <button type="button" @onclick="OnSendEmail">
+                Send PDF by Email
+            </button>
+        </div>
+    </Authorized>
+
+    <NotAuthorized>
+        <p>
+            <em>
+                Please sign in to download or email your PDF result.
+            </em>
+        </p>
+    </NotAuthorized>
+</AuthorizeView>
+
+@code {
+    [Parameter, EditorRequired]
+    public CalculationResult? Result { get; set; }
+
+    [Parameter, EditorRequired]
+    public RenderFragment ResultContent { get; set; } = default!;
+
+    [Parameter, EditorRequired]
+    public EventCallback OnSendEmail { get; set; }
+}
