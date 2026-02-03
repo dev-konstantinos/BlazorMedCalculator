@@ -1,5 +1,49 @@
-﻿<h3>ContentEditor</h3>
+﻿@page "/admin/content"
+@using BlazorMedCalculator.Web.Infrastructure.Interfaces
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize(Roles = "Admin")]
+
+@inject IContentEditorService ContentEditorService
+
+<h3>Content Editor</h3>
+
+<div>
+    <label>Calculator code</label><br />
+    <InputText @bind-Value="_code" />
+    <button @onclick="Load">Load</button>
+</div>
+
+<br />
+
+<div>
+    <label>Markdown</label><br />
+    <textarea @bind="_markdown"
+              style="width:100%; height:300px"></textarea>
+</div>
+
+<br />
+
+<button @onclick="Save">Save</button>
+
+@if (!string.IsNullOrEmpty(_status))
+{
+    <p><em>@_status</em></p>
+}
 
 @code {
+    private string _code = "bmi";
+    private string _markdown = string.Empty;
+    private string? _status;
 
+    private async Task Load()
+    {
+        _markdown = await ContentEditorService.LoadCalculatorAsync(_code);
+        _status = "Loaded";
+    }
+
+    private async Task Save()
+    {
+        await ContentEditorService.SaveCalculatorAsync(_code, _markdown);
+        _status = "Saved";
+    }
 }

@@ -1,7 +1,43 @@
 ﻿@page "/"
 
-<PageTitle>Home</PageTitle>
+<h1>Medical Calculators</h1>
 
-<h1>Hello, world!</h1>
+<div class="calculator-grid">
 
-Welcome to your new app.
+    <NavLink class="calc-card" href="/calculators/bmi">
+        <div class="calc-icon">
+            <i class="bi bi-heart-pulse"></i>
+        </div>
+        <div class="calc-title">
+            Body Mass Index
+        </div>
+        <div class="calc-desc">
+            Calculate BMI based on height and weight
+        </div>
+    </NavLink>
+
+    <NavLink class="calc-card" href="/calculators/glucose">
+        <div class="calc-icon">
+            <i class="bi bi-droplet-half"></i>
+        </div>
+        <div class="calc-title">
+            Blood Glucose
+        </div>
+        <div class="calc-desc">
+            Estimate blood glucose levels
+        </div>
+    </NavLink>
+
+    <NavLink class="calc-card" href="/calculators/egfr">
+        <div class="calc-icon">
+            <i class="bi bi-kidney"></i>
+        </div>
+        <div class="calc-title">
+            eGFR
+        </div>
+        <div class="calc-desc">
+            Kidney function estimation
+        </div>
+    </NavLink>
+
+</div>

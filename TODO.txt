@@ -19,14 +19,13 @@ BlazorMedCalculator.Web
 
 TODO LIST   --------------------------------------------------------------------------------------------------
 
-1) Refactor pages to simplify new pages creation!
-
+1) Make a SEARCH functionality for the NavMenu
 
 
 
 README   ----------------------------------------------------------------------------------------------------
 
-Email Infrastructure (DEV / PROD Switch)
+*** Email Infrastructure (DEV / PROD Switch)
 
 This project implements a production-ready email infrastructure with a safe development mode.
 Real email sending can be disabled locally while preserving the full ASP.NET Identity email confirmation flow.

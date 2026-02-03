@@ -7,6 +7,7 @@ using BlazorMedCalculator.Web.Infrastructure.Email;
 using BlazorMedCalculator.Web.Infrastructure.Email.Development;
 using BlazorMedCalculator.Web.Infrastructure.Endpoints;
 using BlazorMedCalculator.Web.Infrastructure.Identity;
+using BlazorMedCalculator.Web.Infrastructure.Interfaces;
 using BlazorMedCalculator.Web.Infrastructure.Pdf;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -39,7 +40,9 @@ namespace BlazorMedCalculator.Web
 
             builder.Services.AddScoped<ICurrentUser, CurrentUser>(); // register CurrentUser to access user info in business logic
 
-            builder.Services.AddScoped<IContentService, FileContentService>(); // register FileContentService to read markdown
+            builder.Services.AddScoped<IContentService, FileContentService>(); // register service to read markdown
+
+            builder.Services.AddScoped<IContentEditorService, FileContentEditorService>(); // register service to edit markdown
 
             builder.Services.AddScoped<IUserContactInfo, UserContactInfo>(); // register additional service to check account info
 

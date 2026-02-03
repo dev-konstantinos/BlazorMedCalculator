@@ -7,4 +7,4 @@ that is commonly used to classify underweight, overweight and obesity.
 
 BMI = weight (kg) / height <sup>2</sup> (m<sup>2</sup>)
 
-This calculator is intended for adults.
+This calculator is only intended for adults.
