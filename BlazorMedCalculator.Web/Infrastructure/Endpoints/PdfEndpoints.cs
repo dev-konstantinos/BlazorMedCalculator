@@ -13,21 +13,14 @@ public static class PdfEndpoints
             [FromServices] IPdfExportService pdfService,
             [FromForm] CalculationResult result) =>
         {
-            // safety check: URL must match payload
-            if (!string.Equals(code, result.CalculatorCode, StringComparison.OrdinalIgnoreCase))
-            {
-                return Results.BadRequest("Calculator code mismatch.");
-            }
-
             var pdf = pdfService.Generate(result);
-
-            var fileName = $"{result.CalculatorCode}-result.pdf";
 
             return Results.File(
                 pdf,
                 "application/pdf",
-                fileName);
+                $"{result.CalculatorCode}-result.pdf");
         })
+        .RequireAuthorization("CanAccessPdf")
         .DisableAntiforgery();
     }
 }

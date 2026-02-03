@@ -11,7 +11,7 @@
 
 @ResultContent
 
-<AuthorizeView Roles="User,Admin">
+<AuthorizeView Policy="CanAccessPdf">
     <Authorized>
         <!-- ===== Download PDF ===== -->
         <form method="post" action="/api/pdf/@Result.CalculatorCode">

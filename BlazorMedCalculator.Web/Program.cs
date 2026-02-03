@@ -28,7 +28,15 @@ namespace BlazorMedCalculator.Web
             builder.Services.AddScoped<IdentityRedirectManager>();
             builder.Services.AddScoped<AuthenticationStateProvider, IdentityRevalidatingAuthenticationStateProvider>();
 
-            builder.Services.AddAuthorizationCore(); // used for [Authorize] in Razor components
+            // used for [Authorize] in Razor components
+            builder.Services.AddAuthorization(options =>
+            {
+                options.AddPolicy("CanAccessPdf", policy =>
+                {
+                    policy.RequireAuthenticatedUser();
+                });
+            });
+
             builder.Services.AddScoped<ICurrentUser, CurrentUser>(); // register CurrentUser to access user info in business logic
 
             builder.Services.AddScoped<IContentService, FileContentService>(); // register FileContentService to read markdown
