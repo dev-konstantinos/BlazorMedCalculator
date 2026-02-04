@@ -1,5 +1,5 @@
-﻿using BlazorMedCalculator.Application.Interfaces;
-using BlazorMedCalculator.Application.Models;
+﻿using BlazorMedCalculator.Web.Interfaces;
+using BlazorMedCalculator.Web.Models;
 using QuestPDF.Fluent;
 using QuestPDF.Helpers;
 using QuestPDF.Infrastructure;

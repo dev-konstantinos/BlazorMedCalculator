@@ -1,8 +1,8 @@
-﻿using BlazorMedCalculator.Application.Interfaces;
-using BlazorMedCalculator.Application.Models;
+﻿using BlazorMedCalculator.Web.Interfaces;
+using BlazorMedCalculator.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BlazorMedCalculator.Web.Infrastructure.Endpoints;
+namespace BlazorMedCalculator.Web.Endpoints;
 
 public static class PdfEndpoints
 {

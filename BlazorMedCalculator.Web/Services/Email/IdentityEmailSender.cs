@@ -1,5 +1,5 @@
-﻿using BlazorMedCalculator.Application.Interfaces;
-using BlazorMedCalculator.Web.Data;
+﻿using BlazorMedCalculator.Web.Data;
+using BlazorMedCalculator.Web.Interfaces;
 using Microsoft.AspNetCore.Identity;
 
 namespace BlazorMedCalculator.Web.Infrastructure.Email;

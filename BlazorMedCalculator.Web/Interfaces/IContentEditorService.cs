@@ -1,4 +1,4 @@
-﻿namespace BlazorMedCalculator.Web.Infrastructure.Interfaces
+﻿namespace BlazorMedCalculator.Web.Interfaces
 {
     public interface IContentEditorService
     {

@@ -1,4 +1,4 @@
-﻿using BlazorMedCalculator.Application.Interfaces;
+﻿using BlazorMedCalculator.Web.Interfaces;
 using System.Security;
 using System.Text.RegularExpressions;
 

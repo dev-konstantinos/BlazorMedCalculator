@@ -1,4 +1,4 @@
-﻿namespace BlazorMedCalculator.Application.Interfaces
+﻿namespace BlazorMedCalculator.Web.Interfaces
 {
     // interface to access information about the current user in business logic
     public interface ICurrentUser

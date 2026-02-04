@@ -1,6 +1,6 @@
 ﻿using System.Net;
 using System.Net.Mail;
-using BlazorMedCalculator.Application.Interfaces;
+using BlazorMedCalculator.Web.Interfaces;
 using Microsoft.Extensions.Options;
 
 namespace BlazorMedCalculator.Web.Infrastructure.Email;

@@ -1,6 +1,6 @@
-﻿using BlazorMedCalculator.Application.Models;
+﻿using BlazorMedCalculator.Web.Models;
 
-namespace BlazorMedCalculator.Application.Interfaces
+namespace BlazorMedCalculator.Web.Interfaces
 {
     public interface IPdfExportService
     {

@@ -1,12 +1,13 @@
 ﻿@page "/calculators/bmi"
 
-@using BlazorMedCalculator.Domain.Calculators
-@using BlazorMedCalculator.Application.Models
-@using BlazorMedCalculator.Web.Components.Templates
-@using BlazorMedCalculator.Web.Components.Content
 @using System.ComponentModel.DataAnnotations
+@using BlazorMedCalculator.Web.Calculators
+@using BlazorMedCalculator.Web.Components.Content
+@using BlazorMedCalculator.Web.Components.Templates
+@using BlazorMedCalculator.Web.Interfaces
+@using BlazorMedCalculator.Web.Models
 
-@inject BlazorMedCalculator.Application.Interfaces.IContentService ContentService
+@inject IContentService ContentService
 @inject PdfEmailService PdfEmailService
 
 <h1>BMI Calculator</h1>
@@ -55,11 +56,11 @@
 
     private void Calculate()
     {
-        var bmi = BlazorMedCalculator.Domain.Calculators.BmiCalculator.Calculate(
+        var bmi = Web.Calculators.BmiCalculator.Calculate(
             _input.WeightKg,
             _input.HeightCm);
 
-        var category = BlazorMedCalculator.Domain.Calculators.BmiClassifier.Classify(bmi);
+        var category = BmiClassifier.Classify(bmi);
 
         _result = new CalculationResult
         {

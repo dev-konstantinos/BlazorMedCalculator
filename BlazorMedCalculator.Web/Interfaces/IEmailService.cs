@@ -1,4 +1,4 @@
-﻿namespace BlazorMedCalculator.Application.Interfaces
+﻿namespace BlazorMedCalculator.Web.Interfaces
 {
     public interface IEmailService
     {

@@ -1,4 +1,4 @@
-﻿namespace BlazorMedCalculator.Application.Interfaces
+﻿namespace BlazorMedCalculator.Web.Interfaces
 {
     // interface for accessing user contact data (email, confirmation)
     public interface IUserContactInfo

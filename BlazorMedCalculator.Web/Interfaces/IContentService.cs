@@ -1,4 +1,4 @@
-﻿namespace BlazorMedCalculator.Application.Interfaces
+﻿namespace BlazorMedCalculator.Web.Interfaces
 {
     // interface to work with markdown content for calculators and pages
     public interface IContentService

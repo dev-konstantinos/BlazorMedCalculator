@@ -1,49 +1,6 @@
-﻿This project is a Blazor-based medical calculator app designed to provide users with various health-related calculations. The solution is organized into three main projects: Domain, Application, and Web (UI). Basic functions include calculation, content management through markdown files, user authentication, email notifications, and PDF export of calculation results.
-
-BlazorMedCalculator.Web
-│
-├─ Components          ← UI (Razor)
-├─ Content                  ← markdown-content to edit
-├─ Data                       ← EF Core + Identity models
-├─ Endpoints              ← HTTP endpoints (PDF)
-├─ Infrastructure
-│   ├─ Calculators      ← main business logic
-│   ├─ Content           ← FileContentService
-│   ├─ Email               ← SMTP / Fake / PDF email
-│   ├─ Identity            ← User seed, dev helpers etc.
-│   ├─ Pdf                   ← QuestPdfExportService
-│   ├─ Interfaces         ← all interfaces together
-│   └─ Models             ← CalculationResult model
-├─ appsettings.json
-└─ Program.cs
-
-TODO LIST   --------------------------------------------------------------------------------------------------
+﻿TODO LIST   --------------------------------------------------------------------------------------------------
 
 1) Make a SEARCH functionality for the NavMenu
 
 
-
-README   ----------------------------------------------------------------------------------------------------
-
-*** Email Infrastructure (DEV / PROD Switch)
-
-This project implements a production-ready email infrastructure with a safe development mode.
-Real email sending can be disabled locally while preserving the full ASP.NET Identity email confirmation flow.
-Environment Switch (DEV vs PROD): Email behavior is controlled by a single configuration flag.
-
-1) Production (appsettings.json): "Email": { "Enabled": true }
-
-SmtpEmailService:
-
-- Sends real emails with SMTP server
-- SMTP options can be easily adjusted
-- Used in Production
-
-2) Development (appsettings.Development.json): "Email": { "Enabled": false }
-
-FakeEmailService:
-
-- Does not send emails
-- Logs email content to application logs
-- Used only in Development mode
 

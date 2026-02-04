@@ -1,4 +1,4 @@
-﻿namespace BlazorMedCalculator.Domain.Calculators
+﻿namespace BlazorMedCalculator.Web.Calculators
 {
     public static class BmiCalculator
     {

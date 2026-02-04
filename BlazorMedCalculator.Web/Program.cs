@@ -1,14 +1,13 @@
-using BlazorMedCalculator.Application.Interfaces;
 using BlazorMedCalculator.Web.Components;
 using BlazorMedCalculator.Web.Components.Account;
 using BlazorMedCalculator.Web.Data;
+using BlazorMedCalculator.Web.Endpoints;
 using BlazorMedCalculator.Web.Infrastructure.Content;
 using BlazorMedCalculator.Web.Infrastructure.Email;
 using BlazorMedCalculator.Web.Infrastructure.Email.Development;
-using BlazorMedCalculator.Web.Infrastructure.Endpoints;
 using BlazorMedCalculator.Web.Infrastructure.Identity;
-using BlazorMedCalculator.Web.Infrastructure.Interfaces;
 using BlazorMedCalculator.Web.Infrastructure.Pdf;
+using BlazorMedCalculator.Web.Interfaces;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;

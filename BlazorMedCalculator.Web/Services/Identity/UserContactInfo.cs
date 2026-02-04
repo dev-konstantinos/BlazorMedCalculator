@@ -1,5 +1,5 @@
-﻿using BlazorMedCalculator.Application.Interfaces;
-using BlazorMedCalculator.Web.Data;
+﻿using BlazorMedCalculator.Web.Data;
+using BlazorMedCalculator.Web.Interfaces;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Identity;
 

@@ -1,4 +1,4 @@
-﻿using BlazorMedCalculator.Application.Interfaces;
+﻿using BlazorMedCalculator.Web.Interfaces;
 
 namespace BlazorMedCalculator.Web.Infrastructure.Email.Development;
 

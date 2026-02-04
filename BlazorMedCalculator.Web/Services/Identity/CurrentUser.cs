@@ -1,5 +1,5 @@
 ﻿using System.Security.Claims;
-using BlazorMedCalculator.Application.Interfaces;
+using BlazorMedCalculator.Web.Interfaces;
 using Microsoft.AspNetCore.Components.Authorization;
 
 namespace BlazorMedCalculator.Web.Infrastructure.Identity;

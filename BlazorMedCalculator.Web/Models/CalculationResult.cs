@@ -1,4 +1,4 @@
-﻿namespace BlazorMedCalculator.Application.Models
+﻿namespace BlazorMedCalculator.Web.Models
 {
     public sealed class CalculationResult
     {

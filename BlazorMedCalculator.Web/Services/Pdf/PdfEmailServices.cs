@@ -1,5 +1,5 @@
-﻿using BlazorMedCalculator.Application.Interfaces;
-using BlazorMedCalculator.Application.Models;
+﻿using BlazorMedCalculator.Web.Interfaces;
+using BlazorMedCalculator.Web.Models;
 
 public sealed class PdfEmailService
 {
