@@ -28,25 +28,13 @@ The application is under active development, and its functionality grows increme
 
 ## 🧱 Project Structure (Overview)
 
-BlazorMedCalculator.Web
-│
-├── Calculators      // Medical calculation logic
-├── Components       // Blazor UI components
-├── Content          // Markdown-based articles
-├── Data             // EF Core, DbContext, migrations
-├── Endpoints        // Application endpoints
-├── Interfaces       // Service abstractions
-├── Models           // Domain and DTO models
-│
-├── Services         // Concrete service implementations
-│   ├── Content      // Markdown loading & processing (Markdig)
-│   ├── Email        // Email services (SMTP / Fake for testing)
-│   ├── Identity     // Authentication & user management
-│   └── Pdf          // PDF generation (QuestPDF)
-│
-├── wwwroot          // Static assets
-├── appsettings.json
-├── Program.cs
+- **Calculators** – Core calculation logic
+- **Components** – Blazor UI layer
+- **Endpoints** – Application endpoints
+- **Interfaces** – Service contracts
+- **Models** – Domain and DTO models
+- **Services** – Technical implementations (Email, PDF, Identity, Content)
+- **Data** – Data layer (EF Core, migrations)
 
 ---
 
