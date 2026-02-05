@@ -1,0 +1,40 @@
+﻿@page "/search"
+
+@using BlazorMedCalculator.Web.Models
+@using BlazorMedCalculator.Web.Services.Search
+
+@inject CalculatorSearchService SearchService
+
+<h1>Search Calculators</h1>
+
+<input class="form-control"
+       placeholder="Search medical calculators..."
+       @bind="Query"
+       @bind:event="oninput" />
+
+<div class="calculator-grid mt-4">
+    @foreach (var calc in _results)
+    {
+        <NavLink class="calc-card" href="@calc.Url">
+            <div class="calc-title">@calc.Title</div>
+            <div class="calc-desc">@calc.Description</div>
+        </NavLink>
+    }
+</div>
+
+@code {
+    private string? _query;
+
+    private IEnumerable<CalculatorDefinition> _results =
+        CalculatorRegistry.All;
+
+    private string? Query
+    {
+        get => _query;
+        set
+        {
+            _query = value;
+            _results = SearchService.Search(_query, CalculatorRegistry.All);
+        }
+    }
+}

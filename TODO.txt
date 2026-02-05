@@ -1,6 +1,6 @@
 ﻿TODO LIST   --------------------------------------------------------------------------------------------------
 
-1) Make a SEARCH functionality for the NavMenu
+1) Let Admin manage / delete users from the service
 
 
 

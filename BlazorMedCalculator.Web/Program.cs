@@ -8,6 +8,7 @@ using BlazorMedCalculator.Web.Infrastructure.Email.Development;
 using BlazorMedCalculator.Web.Infrastructure.Identity;
 using BlazorMedCalculator.Web.Infrastructure.Pdf;
 using BlazorMedCalculator.Web.Interfaces;
+using BlazorMedCalculator.Web.Services.Search;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -48,6 +49,8 @@ namespace BlazorMedCalculator.Web
             builder.Services.AddScoped<IPdfExportService, QuestPdfExportService>(); // register PDF export service
 
             builder.Services.AddScoped<PdfEmailService>(); // register service to send pdf reports
+
+            builder.Services.AddScoped<CalculatorSearchService>(); // register calculator search service
 
             builder.Services.AddAuthentication(options =>
                 {
