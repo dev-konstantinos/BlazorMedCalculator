@@ -1,7 +1,7 @@
 # BlazorMedCalculator
 
 **BlazorMedCalculator** is a Blazor-based medical calculator web application built with **ASP.NET**.  
-The project is intended as a **demo and learning project**, focusing on realistic backend architecture, infrastructure concerns (authentication, email, PDF generation), and extensibility rather than polished UI.
+It is intended as a **demo and learning project**, focusing on infrastructure concerns (authentication, email, PDF generation), rather than polished UI.
 
 The application is under active development, and its functionality grows incrementally.
 
