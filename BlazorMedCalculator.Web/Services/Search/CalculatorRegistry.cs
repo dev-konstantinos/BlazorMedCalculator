@@ -17,7 +17,7 @@ namespace BlazorMedCalculator.Web.Services.Search
             {
                 Code = "egfr",
                 Title = "eGFR",
-                Description = "Estimate kidney function"
+                Description = "Estimate kidney function (CKD-EPI)"
             }
             };
     }

@@ -1,0 +1,122 @@
+﻿@page "/calculators/egfr"
+
+@using BlazorMedCalculator.Web.Calculators
+@using BlazorMedCalculator.Web.Models
+@using BlazorMedCalculator.Web.Interfaces
+@using BlazorMedCalculator.Web.Components.Templates
+@using BlazorMedCalculator.Web.Components.Content
+@using System.ComponentModel.DataAnnotations
+
+@inject IContentService ContentService
+@inject PdfEmailService PdfEmailService
+
+<h1>eGFR Calculator</h1>
+
+<MarkdownView Markdown="@_article" />
+
+<hr />
+
+<EditForm Model="_input" OnValidSubmit="Calculate">
+    <DataAnnotationsValidator />
+
+    <div>
+        <label>Creatinine (mg/dL)</label><br />
+        <InputNumber @bind-Value="_input.Creatinine" />
+    </div>
+
+    <div>
+        <label>Age (years)</label><br />
+        <InputNumber @bind-Value="_input.Age" />
+    </div>
+
+    <div>
+        <label>Sex</label><br />
+        <InputSelect @bind-Value="_input.IsFemale">
+            <option value="false">Male</option>
+            <option value="true">Female</option>
+        </InputSelect>
+    </div>
+
+    <button type="submit">Calculate</button>
+</EditForm>
+
+<CalculatorResultTemplate Result="_result"
+                          OnSendEmail="SendPdfByEmail">
+
+    <ResultContent>
+        <p>
+            <strong>eGFR:</strong>
+            @_result!.Outputs["egfr"] ml/min/1.73m²
+        </p>
+        <p>
+            <strong>Stage:</strong>
+            @_result!.Outputs["stage"]
+        </p>
+    </ResultContent>
+
+</CalculatorResultTemplate>
+
+@code {
+    private string _article = string.Empty;
+    private EgfrInput _input = new();
+    private CalculationResult? _result;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _article = await ContentService.GetCalculatorArticleAsync("egfr");
+    }
+
+    private void Calculate()
+    {
+        var egfr = Web.Calculators.EgfrCalculator.Calculate(
+            _input.Creatinine,
+            _input.Age,
+            _input.IsFemale);
+
+        _result = new CalculationResult
+        {
+            CalculatorCode = "egfr",
+            Inputs = new Dictionary<string, string>
+            {
+                ["creatinine"] = _input.Creatinine.ToString(),
+                ["age"] = _input.Age.ToString(),
+                ["sex"] = _input.IsFemale ? "Female" : "Male"
+            },
+            Outputs = new Dictionary<string, string>
+            {
+                ["egfr"] = egfr.ToString("0"),
+                ["stage"] = ClassifyEgfr(egfr)
+            }
+        };
+    }
+
+    private static string ClassifyEgfr(double value) =>
+        value switch
+        {
+            >= 90 => "G1 (Normal)",
+            >= 60 => "G2 (Mildly decreased)",
+            >= 45 => "G3a (Mild to moderate)",
+            >= 30 => "G3b (Moderate to severe)",
+            >= 15 => "G4 (Severely decreased)",
+            _ => "G5 (Kidney failure)"
+        };
+
+    private async Task SendPdfByEmail()
+    {
+        if (_result is null)
+            return;
+
+        await PdfEmailService.SendResultAsync(_result);
+    }
+
+    private sealed class EgfrInput
+    {
+        [Range(0.1, 20)]
+        public double Creatinine { get; set; }
+
+        [Range(1, 120)]
+        public int Age { get; set; }
+
+        public bool IsFemale { get; set; }
+    }
+}
