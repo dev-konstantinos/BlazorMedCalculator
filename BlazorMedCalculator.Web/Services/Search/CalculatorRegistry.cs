@@ -11,13 +11,15 @@ namespace BlazorMedCalculator.Web.Services.Search
             {
                 Code = "bmi",
                 Title = "Body Mass Index",
-                Description = "Calculate BMI based on height and weight"
+                Description = "Calculate BMI based on height and weight",
+                CategoryCode = "anthropometry"
             },
             new()
             {
                 Code = "egfr",
                 Title = "eGFR",
-                Description = "Estimate kidney function (CKD-EPI)"
+                Description = "Estimate kidney function (CKD-EPI)",
+                CategoryCode = "nephrology"
             }
             };
     }

@@ -1,0 +1,40 @@
+﻿@page "/categories/{Code}"
+
+@using BlazorMedCalculator.Web.Services.Search
+@using BlazorMedCalculator.Web.Models
+
+@if (_category is null)
+{
+    <p>Category not found.</p>
+}
+else
+{
+    <h1>@_category.Title</h1>
+    <p>@_category.Description</p>
+
+    <div class="calculator-grid">
+        @foreach (var calc in _calculators)
+        {
+            <NavLink class="calc-card" href="@calc.Url">
+                <div class="calc-title">@calc.Title</div>
+                <div class="calc-desc">@calc.Description</div>
+            </NavLink>
+        }
+    </div>
+}
+
+@code {
+    [Parameter] public string Code { get; set; } = default!;
+
+    private CalculatorCategory? _category;
+    private IEnumerable<CalculatorDefinition> _calculators = [];
+
+    protected override void OnParametersSet()
+    {
+        _category = CalculatorCategoryRegistry.All
+            .FirstOrDefault(c => c.Code == Code);
+
+        _calculators = CalculatorRegistry.All
+            .Where(c => c.CategoryCode == Code);
+    }
+}
