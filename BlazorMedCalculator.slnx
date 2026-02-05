@@ -1,5 +1,6 @@
 <Solution>
   <Folder Name="/Solution Items/">
+    <File Path="README.md" />
     <File Path="TODO.txt" />
   </Folder>
   <Project Path="BlazorMedCalculator.Web/BlazorMedCalculator.Web.csproj" />
